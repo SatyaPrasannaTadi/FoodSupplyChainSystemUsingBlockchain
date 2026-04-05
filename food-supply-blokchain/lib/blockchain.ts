@@ -21,12 +21,10 @@ export interface ProductData {
 export const connectWallet = async () => {
     if (typeof window !== 'undefined' && (window as any).ethereum) {
         try {
-            // Request wallet access
             await (window as any).ethereum.request({
                 method: 'eth_requestAccounts'
             });
 
-            // 🔥 FORCE SEPOLIA NETWORK
             const chainId = '0xaa36a7';
 
             try {
@@ -35,7 +33,6 @@ export const connectWallet = async () => {
                     params: [{ chainId }],
                 });
             } catch (switchError: any) {
-                // If network not added → add it
                 if (switchError.code === 4902) {
                     await (window as any).ethereum.request({
                         method: 'wallet_addEthereumChain',
@@ -43,7 +40,7 @@ export const connectWallet = async () => {
                             {
                                 chainId: '0xaa36a7',
                                 chainName: 'Sepolia Test Network',
-                                rpcUrls: ['https://rpc.sepolia.org'], // ✅ safe public RPC
+                                rpcUrls: ['https://rpc.sepolia.org'],
                                 nativeCurrency: {
                                     name: 'SepoliaETH',
                                     symbol: 'ETH',
@@ -53,8 +50,6 @@ export const connectWallet = async () => {
                             },
                         ],
                     });
-                } else {
-                    console.error("Network switch error:", switchError);
                 }
             }
 
@@ -73,12 +68,12 @@ export const connectWallet = async () => {
     }
 };
 
-// ✅ GET CONTRACT INSTANCE
+// ✅ GET CONTRACT
 export const getContract = (signerOrProvider: any) => {
     return new Contract(CONTRACT_ADDRESS, CONTRACT_ABI, signerOrProvider);
 };
 
-// ✅ CREATE PRODUCT
+// ✅ CREATE PRODUCT (🔥 FIXED HERE)
 export const createProductOnBlockchain = async (signer: any, product: ProductData) => {
     try {
         const contract = getContract(signer);
@@ -91,10 +86,13 @@ export const createProductOnBlockchain = async (signer: any, product: ProductDat
             product.producerName,
             product.quantity,
             product.quantityUnit,
-            product.productionDate
+            product.productionDate,
+            {
+                gasLimit: 500000 // ✅ IMPORTANT FIX
+            }
         );
 
-        await tx.wait(); // wait for confirmation
+        await tx.wait();
         return tx;
 
     } catch (error) {
@@ -103,7 +101,7 @@ export const createProductOnBlockchain = async (signer: any, product: ProductDat
     }
 };
 
-// ✅ TRANSFER OWNERSHIP
+// ✅ TRANSFER OWNERSHIP (optional fix)
 export const transferOwnershipOnBlockchain = async (
     signer: any,
     productId: string,
@@ -118,7 +116,10 @@ export const transferOwnershipOnBlockchain = async (
             productId,
             newOwnerAddress,
             location,
-            action
+            action,
+            {
+                gasLimit: 300000
+            }
         );
 
         await tx.wait();
@@ -130,7 +131,7 @@ export const transferOwnershipOnBlockchain = async (
     }
 };
 
-// ✅ UPDATE STATE
+// ✅ UPDATE STATE (optional fix)
 export const updateStateOnBlockchain = async (
     signer: any,
     productId: string,
@@ -145,7 +146,10 @@ export const updateStateOnBlockchain = async (
             productId,
             newState,
             location,
-            action
+            action,
+            {
+                gasLimit: 300000
+            }
         );
 
         await tx.wait();
