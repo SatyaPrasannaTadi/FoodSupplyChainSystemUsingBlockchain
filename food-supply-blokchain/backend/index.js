@@ -10,29 +10,31 @@ const { generateMockProducts } = require("./utils/mockData");
 
 const app = express();
 
-// Configure CORS to allow requests from frontend
+
+// ✅ 🔥 FINAL CORS FIX (NO ERRORS)
 app.use(cors({
-    origin: ['http://localhost:3000', 'http://localhost:3001', 'https://food-supply-chain-system-using-blockchain-30itxzcte.vercel.app'],
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    optionsSuccessStatus: 200
+    origin: "*",   // allow all (fixes Vercel issue completely)
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 }));
+
+
+// ✅ Middleware
 app.use(express.json());
 
-// Connect to MongoDB
+
+// ✅ MongoDB Connection
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log("MongoDB connected"))
     .catch(err => console.error("MongoDB connection error:", err));
 
-// Routes
+
+// ✅ Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/products", productRoutes);
 
-// Blockchain routes - REMOVED (Replaced by direct smart contract interaction from frontend)
 
-// Initialize mock data (optional - uncomment to populate on startup)
-/*
+// ✅ OPTIONAL MOCK DATA (UNCHANGED)
 async function initializeMockData() {
     try {
         const count = await Product.countDocuments();
@@ -41,12 +43,7 @@ async function initializeMockData() {
             const mockProducts = generateMockProducts();
 
             for (const productData of mockProducts) {
-                // Blockchain interaction is now handled by frontend + smart contract
-                // We cannot generate valid blockchain hashes here without a wallet
-                
-                // Save to database without blockchain hashes for now
-                productData.blockchainHashes = []; 
-
+                productData.blockchainHashes = [];
                 await Product.create(productData);
             }
 
@@ -56,11 +53,12 @@ async function initializeMockData() {
         console.error("Error initializing mock data:", error);
     }
 }
-*/
 
-// Uncomment to enable mock data on startup
+// Uncomment if needed
 // mongoose.connection.once('open', initializeMockData);
 
+
+// ✅ Start Server
 const PORT = process.env.PORT || 10000;
 
 app.listen(PORT, () => {
