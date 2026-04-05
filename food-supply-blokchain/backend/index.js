@@ -61,6 +61,8 @@ async function initializeMockData() {
 // Uncomment to enable mock data on startup
 // mongoose.connection.once('open', initializeMockData);
 
-app.listen(process.env.PORT || 5001, () => {
-    console.log(`Server running on port ${process.env.PORT || 5001}`);
+const PORT = process.env.PORT || 10000;
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
 });
