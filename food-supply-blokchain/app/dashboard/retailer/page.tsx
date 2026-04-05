@@ -33,7 +33,7 @@ export default function RetailerDashboard() {
 
     const fetchProducts = async () => {
         try {
-            const res = await fetch("http://localhost:5001/api/products")
+            const res = await fetch("https://foodsupplychainsystemusingblockchain-xaa5.onrender.com/api/products")
             const data = await res.json()
             if (data.success) {
                 setProducts(data.products)
@@ -110,7 +110,7 @@ export default function RetailerDashboard() {
                 blockNumber
             }
 
-            const res = await fetch(`http://localhost:5001/api/products/${selectedProduct.productId}/verify`, {
+            const res = await fetch(`https://foodsupplychainsystemusingblockchain-xaa5.onrender.com/api/products/${selectedProduct.productId}/verify`, {
                 method: "PUT",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(body)

@@ -122,7 +122,7 @@ export default function ConsumerDashboard() {
     useEffect(() => {
         const fetchAllProducts = async () => {
             try {
-                const res = await fetch("http://localhost:5001/api/products")
+                const res = await fetch("https://foodsupplychainsystemusingblockchain-xaa5.onrender.com/api/products")
                 const data = await res.json()
                 if (data.success) {
                     setAllProducts(data.products)
@@ -211,7 +211,7 @@ export default function ConsumerDashboard() {
         setLoading(true)
         setShowDropdown(false)
         try {
-            const res = await fetch(`http://localhost:5001/api/products/${id}`)
+            const res = await fetch(`https://foodsupplychainsystemusingblockchain-xaa5.onrender.com/api/products/${id}`)
             const data = await res.json()
 
             if (data.success) {
@@ -255,7 +255,7 @@ export default function ConsumerDashboard() {
         setLoading(true)
         setShowDropdown(false)
         try {
-            const res = await fetch(`http://localhost:5001/api/products/${searchId}`)
+            const res = await fetch(`https://foodsupplychainsystemusingblockchain-xaa5.onrender.com/api/products/${searchId}`)
             const data = await res.json()
 
             if (data.success) {

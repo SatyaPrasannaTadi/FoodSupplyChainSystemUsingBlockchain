@@ -88,7 +88,7 @@ export default function ProducerDashboard() {
 
     const fetchProducts = async () => {
         try {
-            const res = await fetch("http://localhost:5001/api/products")
+            const res = await fetch("https://foodsupplychainsystemusingblockchain-xaa5.onrender.com/api/products")
             const data = await res.json()
             if (data.success) {
                 setProducts(data.products)
@@ -188,7 +188,7 @@ export default function ProducerDashboard() {
                 blockNumber
             }
 
-            const res = await fetch("http://localhost:5001/api/products/register", {
+            const res = await fetch("https://foodsupplychainsystemusingblockchain-xaa5.onrender.com/api/products/register", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"

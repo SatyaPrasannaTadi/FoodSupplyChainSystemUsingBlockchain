@@ -19,8 +19,8 @@ export default function AdminDashboard() {
     const fetchData = async () => {
         try {
             const [chainRes, productsRes] = await Promise.all([
-                fetch("http://localhost:5001/api/blockchain"),
-                fetch("http://localhost:5001/api/products")
+                fetch("https://foodsupplychainsystemusingblockchain-xaa5.onrender.com/api/blockchain"),
+                fetch("https://foodsupplychainsystemusingblockchain-xaa5.onrender.com/api/products")
             ])
 
             const chainData = await chainRes.json()
@@ -42,7 +42,7 @@ export default function AdminDashboard() {
 
     const validateChain = async () => {
         try {
-            const res = await fetch("http://localhost:5001/api/blockchain/validate")
+            const res = await fetch("https://foodsupplychainsystemusingblockchain-xaa5.onrender.com/api/blockchain/validate")
             const data = await res.json()
 
             if (data.success) {
