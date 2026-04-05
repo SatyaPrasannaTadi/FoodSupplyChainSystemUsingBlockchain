@@ -1,0 +1,25 @@
+{
+    "name": "blockchain",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "hardhat.config.cjs",
+    "scripts": {
+        "compile": "hardhat compile",
+        "deploy": "hardhat run scripts/deploy.js --network localhost",
+        "node": "hardhat node",
+        "test": "hardhat test"
+    },
+    "keywords": [
+        "blockchain",
+        "food-supply-chain",
+        "hardhat",
+        "solidity"
+    ],
+    "author": "",
+    "license": "MIT",
+    "description": "Blockchain smart contracts for food supply chain tracking",
+    "devDependencies": {
+        "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+        "hardhat": "^2.22.0"
+    }
+}

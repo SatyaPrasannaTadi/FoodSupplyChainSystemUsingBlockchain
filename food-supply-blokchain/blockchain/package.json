@@ -1,0 +1,20 @@
+{
+  "name": "blockchain",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx hardhat test",
+    "compile": "npx hardhat compile",
+    "start-node": "npx ganache --server.port 7545 --chain.chainId 1337 --chain.networkId 1337"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "dotenv": "^16.4.5",
+    "ganache": "^7.9.2",
+    "hardhat": "^2.22.0"
+  }
+}

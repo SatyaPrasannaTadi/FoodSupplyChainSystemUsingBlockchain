@@ -1,0 +1,405 @@
+{
+  "address": "0xe34BB303C783B450fB510F66e358Cd5eD9bC424B",
+  "abi": [
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "OwnershipTransferred",
+      "inputs": [
+        {
+          "type": "string",
+          "name": "productId",
+          "indexed": false
+        },
+        {
+          "type": "address",
+          "name": "oldOwner",
+          "indexed": true
+        },
+        {
+          "type": "address",
+          "name": "newOwner",
+          "indexed": true
+        },
+        {
+          "type": "string",
+          "name": "location",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "timestamp",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "ProductCreated",
+      "inputs": [
+        {
+          "type": "string",
+          "name": "productId",
+          "indexed": false
+        },
+        {
+          "type": "string",
+          "name": "name",
+          "indexed": false
+        },
+        {
+          "type": "address",
+          "name": "owner",
+          "indexed": true
+        },
+        {
+          "type": "uint256",
+          "name": "timestamp",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "anonymous": false,
+      "name": "ProductStateUpdated",
+      "inputs": [
+        {
+          "type": "string",
+          "name": "productId",
+          "indexed": false
+        },
+        {
+          "type": "uint8",
+          "name": "newState",
+          "indexed": false
+        },
+        {
+          "type": "string",
+          "name": "location",
+          "indexed": false
+        },
+        {
+          "type": "uint256",
+          "name": "timestamp",
+          "indexed": false
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "createProduct",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "string",
+          "name": "_productId"
+        },
+        {
+          "type": "string",
+          "name": "_name"
+        },
+        {
+          "type": "string",
+          "name": "_category"
+        },
+        {
+          "type": "string",
+          "name": "_originLocation"
+        },
+        {
+          "type": "string",
+          "name": "_producerName"
+        },
+        {
+          "type": "uint256",
+          "name": "_quantity"
+        },
+        {
+          "type": "string",
+          "name": "_quantityUnit"
+        },
+        {
+          "type": "uint256",
+          "name": "_productionDate"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "getProduct",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "string",
+          "name": "_productId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tuple",
+          "name": "",
+          "components": [
+            {
+              "type": "string",
+              "name": "productId"
+            },
+            {
+              "type": "string",
+              "name": "name"
+            },
+            {
+              "type": "string",
+              "name": "category"
+            },
+            {
+              "type": "string",
+              "name": "originLocation"
+            },
+            {
+              "type": "string",
+              "name": "producerName"
+            },
+            {
+              "type": "uint256",
+              "name": "quantity"
+            },
+            {
+              "type": "string",
+              "name": "quantityUnit"
+            },
+            {
+              "type": "uint256",
+              "name": "productionDate"
+            },
+            {
+              "type": "uint8",
+              "name": "currentState"
+            },
+            {
+              "type": "address",
+              "name": "currentOwner"
+            },
+            {
+              "type": "address",
+              "name": "creator"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "getProductHistory",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "string",
+          "name": "_productId"
+        }
+      ],
+      "outputs": [
+        {
+          "type": "tuple[]",
+          "name": "",
+          "components": [
+            {
+              "type": "uint8",
+              "name": "state"
+            },
+            {
+              "type": "address",
+              "name": "owner"
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp"
+            },
+            {
+              "type": "string",
+              "name": "action"
+            },
+            {
+              "type": "string",
+              "name": "location"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "productExists",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "string",
+          "name": ""
+        }
+      ],
+      "outputs": [
+        {
+          "type": "bool",
+          "name": ""
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "productHistory",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "string",
+          "name": ""
+        },
+        {
+          "type": "uint256",
+          "name": ""
+        }
+      ],
+      "outputs": [
+        {
+          "type": "uint8",
+          "name": "state"
+        },
+        {
+          "type": "address",
+          "name": "owner"
+        },
+        {
+          "type": "uint256",
+          "name": "timestamp"
+        },
+        {
+          "type": "string",
+          "name": "action"
+        },
+        {
+          "type": "string",
+          "name": "location"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "products",
+      "constant": true,
+      "stateMutability": "view",
+      "payable": false,
+      "inputs": [
+        {
+          "type": "string",
+          "name": ""
+        }
+      ],
+      "outputs": [
+        {
+          "type": "string",
+          "name": "productId"
+        },
+        {
+          "type": "string",
+          "name": "name"
+        },
+        {
+          "type": "string",
+          "name": "category"
+        },
+        {
+          "type": "string",
+          "name": "originLocation"
+        },
+        {
+          "type": "string",
+          "name": "producerName"
+        },
+        {
+          "type": "uint256",
+          "name": "quantity"
+        },
+        {
+          "type": "string",
+          "name": "quantityUnit"
+        },
+        {
+          "type": "uint256",
+          "name": "productionDate"
+        },
+        {
+          "type": "uint8",
+          "name": "currentState"
+        },
+        {
+          "type": "address",
+          "name": "currentOwner"
+        },
+        {
+          "type": "address",
+          "name": "creator"
+        }
+      ]
+    },
+    {
+      "type": "function",
+      "name": "transferOwnership",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "string",
+          "name": "_productId"
+        },
+        {
+          "type": "address",
+          "name": "_newOwner"
+        },
+        {
+          "type": "string",
+          "name": "_location"
+        },
+        {
+          "type": "string",
+          "name": "_action"
+        }
+      ],
+      "outputs": []
+    },
+    {
+      "type": "function",
+      "name": "updateState",
+      "constant": false,
+      "payable": false,
+      "inputs": [
+        {
+          "type": "string",
+          "name": "_productId"
+        },
+        {
+          "type": "uint8",
+          "name": "_newState"
+        },
+        {
+          "type": "string",
+          "name": "_location"
+        },
+        {
+          "type": "string",
+          "name": "_action"
+        }
+      ],
+      "outputs": []
+    }
+  ]
+}
